@@ -7,7 +7,12 @@ const port = process.env.PORT || 3000;
 
 app.get('/asl', async (req, res) => {
     console.log("accessing scrapper...")
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+      ],
+    });
     const page = await browser.newPage();
     await page.setRequestInterception(true);
 
