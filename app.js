@@ -17,6 +17,8 @@ app.use(function(req, res, next) {
 app.get("/asl", async (req, res) => {
   console.log("accessing scrapper...");
   const browser = await puppeteer.launch({
+    // executablePath: "chromium-browser",
+    headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"]
   });
   const page = await browser.newPage();
